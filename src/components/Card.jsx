@@ -1,4 +1,4 @@
-import { useState, useEffect, key } from "react";
+import { useState, useEffect } from "react";
 
 export default function Card({ pokemon, shuffle }) {
   const [src, setSrc] = useState(null);
@@ -18,7 +18,7 @@ export default function Card({ pokemon, shuffle }) {
 
   return (
     <div onClick={() => shuffle()}>
-      {src ? <img src={src} alt={pokemon} key={key} /> : <p>Loading...</p>}
+      {src ? <img src={src} alt={pokemon} /> : <p>Loading...</p>}
     </div>
   );
 }

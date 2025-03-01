@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Card from "./Card.jsx";
+import Scoreboard from "./Scoreboard.jsx"; 
 
 export default function Board() {
   const [pokeIndexes, setPokeIndexes] = useState([]);
@@ -58,6 +59,7 @@ export default function Board() {
           shuffle={fisherYatesShuffle}
         />
       ))}
+      <Scoreboard pokeIndexes={pokeIndexes}/>
     </>
   );
 }
