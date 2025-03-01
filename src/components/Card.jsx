@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 
-export default function Card() {
+export default function Card({ pokemon }) {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/ditto", { mode: "cors" })
-      .then((response) => response.json())
-      .then((response) => {
-        setSrc(response.sprites.other["official-artwork"].front_default);
-      });
-  }, []); 
+    (async () => {
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+          { mode: "cors" }
+        );
+        const pokeData = await response.json();
+        setSrc(pokeData.sprites.other["official-artwork"].front_default);
+      } catch {}
+    })();
+  }, []);
 
-  return (
-    <div>
-      {src ? <img src={src} alt="Ditto" /> : <p>Loading...</p>}
-    </div>
-  );
+  return <div>{src ? <img src={src} alt={pokemon} /> : <p>Loading...</p>}</div>;
 }

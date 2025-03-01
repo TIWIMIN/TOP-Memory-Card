@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-import Card from './components/Card'
+import Board from "./components/Board.jsx";
 
 function App() {
-
   return (
     <>
-      <Card/>
+      <Board />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
