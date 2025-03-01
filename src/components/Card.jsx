@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, key } from "react";
 
-export default function Card({ pokemon }) {
+export default function Card({ pokemon, shuffle }) {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
@@ -16,5 +16,9 @@ export default function Card({ pokemon }) {
     })();
   }, []);
 
-  return <div>{src ? <img src={src} alt={pokemon} /> : <p>Loading...</p>}</div>;
+  return (
+    <div onClick={() => shuffle()}>
+      {src ? <img src={src} alt={pokemon} key={key} /> : <p>Loading...</p>}
+    </div>
+  );
 }

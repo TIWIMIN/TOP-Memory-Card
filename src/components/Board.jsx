@@ -24,6 +24,18 @@ export default function Board() {
     setPokeIndexes(tempPokeIndexes);
   };
 
+  const fisherYatesShuffle = () => {
+    const tempPokeIndexes = [...pokeIndexes];
+    for (let i = 0; i < tempPokeIndexes.length; i++) {
+      const swapIndex =
+        Math.floor(Math.random() * (tempPokeIndexes.length - i)) + i;
+      const tempValue = tempPokeIndexes[swapIndex];
+      tempPokeIndexes[swapIndex] = tempPokeIndexes[i];
+      tempPokeIndexes[i] = tempValue;
+    }
+    setPokeIndexes(tempPokeIndexes);
+  };
+
   useEffect(() => {
     setBoard();
     console.log("hi");
@@ -40,7 +52,11 @@ export default function Board() {
         RESET BOARD
       </button>
       {pokeIndexes.map((pokeIndex) => (
-        <Card pokemon={pokeIndex} key={pokeIndex} />
+        <Card
+          pokemon={pokeIndex}
+          key={pokeIndex}
+          shuffle={fisherYatesShuffle}
+        />
       ))}
     </>
   );
