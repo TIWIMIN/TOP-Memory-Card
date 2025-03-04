@@ -8,8 +8,8 @@ export default function Scoreboard({ pokeSet }) {
   if (score > bestScore) setBestScore(score);
   return (
     <>
-      <h3>current score: {score}</h3>
-      <h3>best score: {score}</h3>
+      <h3 className="score">current score: {score}</h3>
+      <h3 className="score">best score: {score}</h3>
     </>
   );
 }

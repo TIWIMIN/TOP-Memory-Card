@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 
+import "../styles/card.css";
+
 export default function Card({ pokemon, shuffle, handleScore }) {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
+    let ignore = false;
     (async () => {
       try {
         const response = await fetch(
@@ -11,11 +14,14 @@ export default function Card({ pokemon, shuffle, handleScore }) {
           { mode: "cors" }
         );
         const pokeData = await response.json();
-        setSrc(pokeData.sprites.other["official-artwork"].front_default);
+        if (!ignore) {
+          setSrc(pokeData.sprites.other["official-artwork"].front_default);
+        }
       } catch {
         console.log("error");
       }
     })();
+    return () => (ignore = true);
   }, [pokemon]);
 
   return (
@@ -24,8 +30,10 @@ export default function Card({ pokemon, shuffle, handleScore }) {
         shuffle();
         handleScore(pokemon);
       }}
+      className="card"
     >
       {src ? <img src={src} alt={pokemon} /> : <p>Loading...</p>}
+      <div className="poke-ball"></div>
     </div>
   );
 }

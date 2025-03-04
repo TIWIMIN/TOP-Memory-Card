@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 import Scoreboard from "./Scoreboard.jsx";
 
+import "../styles/board.css"; 
+
 export default function Board() {
   const [pokeIndexes, setPokeIndexes] = useState([]);
   const [currentPokeSet, setCurrentPokeSet] = useState(new Set());
@@ -24,6 +26,7 @@ export default function Board() {
       tempPokeIndexes.push(randomPokeIndex);
     }
     setPokeIndexes(tempPokeIndexes);
+    setCurrentPokeSet(new Set()); 
   };
 
   const fisherYatesShuffle = () => {
@@ -52,24 +55,27 @@ export default function Board() {
   }, []);
 
   return (
-    <>
+    <div className="board">
       <button
         type="button"
         onClick={() => {
           setBoard();
         }}
+        className="reset-button"
       >
         RESET BOARD
       </button>
       <Scoreboard pokeSet={currentPokeSet} />
-      {pokeIndexes.map((pokeIndex) => (
-        <Card
-          pokemon={pokeIndex}
-          key={pokeIndex}
-          shuffle={fisherYatesShuffle}
-          handleScore={handleScore}
-        />
-      ))}
-    </>
+      <div className="game-board">
+        {pokeIndexes.map((pokeIndex) => (
+          <Card
+            pokemon={pokeIndex}
+            key={pokeIndex}
+            shuffle={fisherYatesShuffle}
+            handleScore={handleScore}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

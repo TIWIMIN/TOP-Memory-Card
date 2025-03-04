@@ -1,0 +1,29 @@
+.board {
+    display: grid; 
+}
+
+.game-board {
+    display: grid; 
+    width: 100%; 
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr); 
+    grid-gap: 1rem; 
+    margin-top: 1rem;
+    justify-self: center; 
+}
+
+.reset-button {
+    width: 10rem; 
+    height: 3rem; 
+    border-radius: 1rem;
+    border: none; 
+    margin: 1rem 0rem;
+    color: #45435c;  
+    background-color: #e3e0ff;
+}
+
+@media (min-width: 500px) {
+    .game-board {
+        max-width: 100%;
+        width: 750px; 
+    }
+}

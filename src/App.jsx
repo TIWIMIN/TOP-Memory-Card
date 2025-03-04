@@ -1,11 +1,12 @@
-import "./App.css";
-
 import Board from "./components/Board.jsx";
 
 function App() {
   return (
     <>
-      <Board />
+      <div className="app">
+        <h1>PokéMatch</h1>
+        <Board />
+      </div>
     </>
   );
 }
