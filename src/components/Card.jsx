@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Card({ pokemon, shuffle }) {
+export default function Card({ pokemon, shuffle, handleScore }) {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
@@ -12,12 +12,19 @@ export default function Card({ pokemon, shuffle }) {
         );
         const pokeData = await response.json();
         setSrc(pokeData.sprites.other["official-artwork"].front_default);
-      } catch {}
+      } catch {
+        console.log("error");
+      }
     })();
-  }, []);
+  }, [pokemon]);
 
   return (
-    <div onClick={() => shuffle()}>
+    <div
+      onClick={() => {
+        shuffle();
+        handleScore(pokemon);
+      }}
+    >
       {src ? <img src={src} alt={pokemon} /> : <p>Loading...</p>}
     </div>
   );

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 import Card from "./Card.jsx";
-import Scoreboard from "./Scoreboard.jsx"; 
+import Scoreboard from "./Scoreboard.jsx";
 
 export default function Board() {
   const [pokeIndexes, setPokeIndexes] = useState([]);
+  const [currentPokeSet, setCurrentPokeSet] = useState(new Set());
 
   const setBoard = () => {
     let pokeIndexAvailable = [];
@@ -37,6 +38,14 @@ export default function Board() {
     setPokeIndexes(tempPokeIndexes);
   };
 
+  const handleScore = (pokemon) => {
+    if (currentPokeSet.has(pokemon)) {
+      setCurrentPokeSet(new Set());
+      return;
+    }
+    setCurrentPokeSet(new Set(currentPokeSet).add(pokemon));
+  };
+
   useEffect(() => {
     setBoard();
     console.log("hi");
@@ -52,14 +61,15 @@ export default function Board() {
       >
         RESET BOARD
       </button>
+      <Scoreboard pokeSet={currentPokeSet} />
       {pokeIndexes.map((pokeIndex) => (
         <Card
           pokemon={pokeIndex}
           key={pokeIndex}
           shuffle={fisherYatesShuffle}
+          handleScore={handleScore}
         />
       ))}
-      <Scoreboard pokeIndexes={pokeIndexes}/>
     </>
   );
 }
