@@ -1,5 +1,6 @@
 .board {
     display: grid; 
+    justify-self: center; 
 }
 
 .game-board {
@@ -22,7 +23,7 @@
 }
 
 @media (min-width: 500px) {
-    .game-board {
+    .board {
         max-width: 100%;
         width: 750px; 
     }

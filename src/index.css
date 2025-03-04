@@ -15,9 +15,9 @@ body {
   line-height: 1.5;
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
-  height: 100vh; 
+  height: 100vh;
   max-height: 100%;
-  background-color: #45435c; 
+  background-color: #45435c;
   color: #e3e0ff;
 }
 
@@ -72,8 +72,8 @@ h6 {
 }
 
 .app {
-  height: 100vh; 
-  min-height: 100%; 
-  margin: 0.25rem 1rem 1rem 1rem; 
-   
+  height: 100vh;
+  min-height: 100%;
+  margin: 0.25rem 1rem 1rem 1rem;
+  justify-self: center;
 }
